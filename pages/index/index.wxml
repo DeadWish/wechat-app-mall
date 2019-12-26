@@ -38,6 +38,7 @@
         </view>
       </navigator>
     </view> -->
+
     <view wx:if="{{noticeList}}" class="notice">
       <image class="notice_icon" src="/images/notice.png"></image>
       <swiper wx:if="{{noticeList}}" class="notice_swiper" vertical autoplay circular>
@@ -46,6 +47,14 @@
             <view class="notice_itemr">{{item.title}}</view>
           </swiper-item>
         </navigator>
+      </swiper>
+    </view>
+
+    <view class="swiper-container">
+      <swiper class="swiper_box" indicator-dots="true" indicator-active-color="#fff" autoplay circular>
+        <swiper-item wx:for="{{banners}}" wx:key="id">
+          <image bindtap="tapBanner" data-id="{{item.businessId}}" src="{{item.picUrl}}" class="slide-image" />
+        </swiper-item>
       </swiper>
     </view>
     <scroll-view scroll-x>
@@ -59,13 +68,7 @@
       </view>
     </scroll-view>
   </view>
-  <view class="swiper-container">
-    <swiper class="swiper_box" indicator-dots="true" indicator-active-color="#fff" autoplay circular>
-      <swiper-item wx:for="{{banners}}" wx:key="id">
-        <image bindtap="tapBanner" data-id="{{item.businessId}}" src="{{item.picUrl}}" class="slide-image" />
-      </swiper-item>
-    </swiper>
-  </view>
+
   <view class="weui-loadmore weui-loadmore_line" wx:if="{{goodsRecommend.length > 0 && activeCategoryId == 0}}">
     <view class="weui-loadmore__tips weui-loadmore__tips_in-line">爆品推荐</view>
   </view>
@@ -81,7 +84,6 @@
       </view>
     </view>
   </view>
-  <ad unit-id="adunit-588264b3e2362e1e"></ad>
   <view wx-if="{{kanjiaList.length > 0 && activeCategoryId == 0}}" class="weui-panel weui-panel_access" style='margin-top:0px;'>
     <view class="weui-panel__hd">疯狂砍价</view>
     <view class="weui-panel__bd">

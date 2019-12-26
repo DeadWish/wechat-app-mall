@@ -49,7 +49,6 @@
       <view class='text'>退款/售后</view>
     </view>
   </view>
-  <ad unit-id="adunit-588264b3e2362e1e"></ad>
   <block wx:if="{{vipLevel > 0}}">
   <view style="height:10rpx;background: #eee;width:100%;"></view>
   <view class="my-item" wx:if="{{!apiUserInfoMap.base.isSeller}}">
