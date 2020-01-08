@@ -155,14 +155,14 @@ Page({
       })
       return
     }
-    if (code == ""){
-      wx.showModal({
-        title: '提示',
-        content: '请填写邮编',
-        showCancel:false
-      })
-      return
-    }
+    // if (code == ""){
+    //   wx.showModal({
+    //     title: '提示',
+    //     content: '请填写邮编',
+    //     showCancel:false
+    //   })
+    //   return
+    // }
     let apiResult
     if (that.data.id) {
       apiResult = WXAPI.updateAddress({

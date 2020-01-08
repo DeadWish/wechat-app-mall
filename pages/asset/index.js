@@ -18,7 +18,8 @@ Page({
     score_sign_continuous: 0,
     cashlogs: undefined,
 
-    tabs: ["资金明细", "提现记录", "押金记录"],
+    // tabs: ["资金明细", "提现记录", "押金记录"],
+    tabs: ["资金明细"],
     activeIndex: 0,
     sliderOffset: 0,
     sliderLeft: 0,
