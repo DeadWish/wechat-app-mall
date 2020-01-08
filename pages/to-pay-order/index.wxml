@@ -25,9 +25,9 @@
         <label class="radio">
           <radio value="kd" checked="{{peisongType == 'kd'}}" /> 快递
         </label>
-        <label class="radio" wx:if='{{allowSelfCollection == "1"}}'>
+        <!-- <label class="radio" wx:if='{{allowSelfCollection == "1"}}'>
           <radio value="zq" checked="{{peisongType == 'zq'}}" /> 到店自取
-        </label>
+        </label> -->
       </radio-group>
     </view>
     <view class="address-box" wx:if="{{peisongType == 'kd' && isNeedLogistics > 0}}">
