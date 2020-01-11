@@ -16,7 +16,7 @@
       </view>
       <view class="weui-search-bar__cancel-btn" hidden="{{!inputShowed}}" bindtap="hideInput">取消</view>
     </view>
-    <view wx:if="{{noticeList}}" class="notice">
+    <!-- <view wx:if="{{noticeList}}" class="notice">
       <image class="notice_icon" src="/images/notice.png"></image>
       <swiper wx:if="{{noticeList}}" class="notice_swiper" vertical autoplay circular>
         <navigator wx:for-items="{{noticeList.dataList}}" wx:key="id" url="/pages/notice/show?id={{item.id}}" open-type="navigate">
@@ -25,7 +25,7 @@
           </swiper-item>
         </navigator>
       </swiper>
-    </view>
+    </view> -->
 
     <view class="swiper-container">
       <swiper class="swiper_box" indicator-dots="true" indicator-active-color="#fff" autoplay circular>

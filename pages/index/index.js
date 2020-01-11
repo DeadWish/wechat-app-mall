@@ -131,7 +131,7 @@ Page({
       }      
     })
     that.getCoupons()
-    that.getNotice()
+    // that.getNotice()
     that.kanjiaGoods()
     that.pingtuanGoods()
   },

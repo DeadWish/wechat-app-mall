@@ -60,7 +60,7 @@
             <block wx:for-items="{{orderDetail.goods}}" wx:key="{{index}}">
             <view class="a-goods">
                 <view class="img-box">
-                    <image src="{{item.pic}}" class="img" />
+                    <image src="{{item.pic}}" class="img" bindtap="tapGoods" data-id="{{item.goodsId}}"/>
                 </view>
                 <view class="text-box">
                     <view class="arow arow01">

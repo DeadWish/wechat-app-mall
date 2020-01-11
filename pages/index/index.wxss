@@ -22,13 +22,13 @@
   overflow: hidden;
 }
 .category-imgbox{
-  width:80rpx;
-  height:80rpx;
+  width:100rpx;
+  height:100rpx;
 }
 .category-title{
-  font-size: 24rpx;
+  font-size: 26rpx;
   text-align:center;
-  margin-top:10rpx;
+  margin-top:5rpx;
 }
 
 
@@ -38,12 +38,12 @@
 }
 .swiper_box {
   width: 750rpx;
-  height:250rpx;
+  height:350rpx
 }
 
 swiper-item image {
   width: 750rpx;
-  height:250rpx;
+  height:350rpx;
 }
 ::-webkit-scrollbar {
   width: 0;

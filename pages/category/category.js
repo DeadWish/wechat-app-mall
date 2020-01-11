@@ -59,9 +59,17 @@ Page({
       page: 1,
       pageSize: 100000
     }).then(function(res) {
-      if (res.code == 404 || res.code == 700) {
+      if (res.code == 404) {
+        // if (res.code == 404 || res.code == 700) {
         return
       }
+      if (res.code == 700) {
+        that.setData({
+          currentGoods: []
+        });
+        return
+      }
+
       that.setData({
         currentGoods: res.data
       });

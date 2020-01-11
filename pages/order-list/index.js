@@ -43,6 +43,13 @@ Page({
       url: "/pages/order/refundApply?id=" + orderId + "&amount=" + amount
     })
   },
+  tapGoods: function(e) {
+    if (e.currentTarget.dataset.id != 0) {
+      wx.navigateTo({
+        url: "/pages/goods-details/index?id=" + e.currentTarget.dataset.id
+      })
+    }  
+  },
   toPayTap: function(e) {
     // 防止连续点击--开始
     if (this.data.payButtonClicked) {

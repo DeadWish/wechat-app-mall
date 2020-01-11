@@ -17,7 +17,7 @@
       </navigator>
       <scroll-view class="goods-img-container" scroll-x="true">
         <view class="img-box" wx:for-items="{{goodsMap[item.id]}}" wx:key="{{index}}">
-          <image src="{{item.pic}}" class="goods-img"></image>
+          <image src="{{item.pic}}" class="goods-img" bindtap="tapGoods" data-id="{{item.goodsId}}"></image>
         </view>
       </scroll-view>
       <view class="goods-price">

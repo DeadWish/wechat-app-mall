@@ -41,6 +41,13 @@ Page({
         yunPrice: yunPrice
       });
     },
+    tapGoods: function (e) {
+      if (e.currentTarget.dataset.id != 0) {
+        wx.navigateTo({
+          url: "/pages/goods-details/index?id=" + e.currentTarget.dataset.id
+        })
+      }
+    },
     wuliuDetailsTap:function(e){
       var orderId = e.currentTarget.dataset.id;
       wx.navigateTo({
