@@ -8,17 +8,18 @@
   clear: both;
   border-width: 3rpx;
   border-color: #000;
+  margin-bottom: 10rpx;
 }
 .category-list{
   width:150rpx;
-  margin-top:20rpx;
+  margin-top:10rpx;
   text-align: center;
   display: inline-block;
   overflow: hidden;
 }
 .category-column{
   width:100%;
-  margin-top:20rpx;
+  margin-top:10rpx;
   overflow: hidden;
 }
 .category-imgbox{
@@ -28,9 +29,8 @@
 .category-title{
   font-size: 26rpx;
   text-align:center;
-  margin-top:5rpx;
+  margin-top:3rpx;
 }
-
 
 .swiper-container{
   width: 750rpx;

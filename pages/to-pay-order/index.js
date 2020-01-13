@@ -167,7 +167,30 @@ Page({
 
       if (e && "buyNow" != that.data.orderType) {
         // 清空购物车数据
-        wx.removeStorageSync('shopCarInfo');
+        // wx.removeStorageSync('shopCarInfo');
+        var shopCarInfoMem = wx.getStorageSync('shopCarInfo');
+        that.data.kjId = shopCarInfoMem.kjId;
+        if (shopCarInfoMem && shopCarInfoMem.shopList) {
+          // shopList = shopCarInfoMem.shopList
+          var list = shopCarInfoMem.shopList.filter(entity => {
+            return ! entity.active;
+          });
+          var shopCarInfo = {};
+          var tempNumber = 0;
+          shopCarInfo.shopList = list;
+          for (var i = 0; i < list.length; i++) {
+            tempNumber = tempNumber + list[i].number
+          }
+          shopCarInfo.shopNum = tempNumber;
+          wx.setStorage({
+            key: "shopCarInfo",
+            data: shopCarInfo,
+            success: function (res) {
+              // 获取购物车数据，显示TabBarBadge
+              TOOLS.showTabBarBadge();
+            }
+          })
+        }
       }
       if (!e) {
         that.setData({

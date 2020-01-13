@@ -11,33 +11,12 @@ Page({
   },
   onLoad:function(){
     const _this = this
-    wx.setNavigationBarTitle({
-      title: wx.getStorageSync('mallName')
-    })
     wx.switchTab({
       url: '/pages/index/index',
     });
-
-  },
-  onShow:function(){
-    
-  },
-  swiperchange: function (e) {
-    //console.log(e.detail.current)
-    this.setData({
-      swiperCurrent: e.detail.current
-    })
   },
   goToIndex: function (e) {
-    if (app.globalData.isConnected) {
-      wx.setStorage({
-        key: 'app_show_pic_version',
-        data: CONFIG.version
-      })
-      wx.switchTab({
-        url: '/pages/index/index',
-      });
-    } else {
+    if (! app.globalData.isConnected) {
       wx.showToast({
         title: '当前无网络',
         icon: 'none',

@@ -60,7 +60,7 @@ Page({
       selectCurrent: e.index
     })
   },
-  onLoad: function(e) {   
+  onLoad: function(e) { 
     wx.showShareMenu({
       withShareTicket: true
     }) 
@@ -110,12 +110,14 @@ Page({
       let categories = [];
       if (res.code == 0) {
         categories = categories.concat(res.data)
+        categories = categories.slice(0,10)
       }
-      const _n = Math.ceil(categories.length / 2)
-      // const _n = Math.ceil(categories.length)
+      
+      // const _n = Math.ceil(categories.length / 2)
+      // // const _n = Math.ceil(categories.length)
       that.setData({
         categories: categories,
-        category_box_width: 150 * _n,
+        category_box_width: 150 * 5,
         activeCategoryId: 0,
         curPage: 1
       });
@@ -138,6 +140,11 @@ Page({
   onShow: function(e){
     // 获取购物车数据，显示TabBarBadge
     TOOLS.showTabBarBadge();
+    this.setData({
+      activeCategoryId: 0,
+      curPage: 1,
+    });
+    this.getGoodsList(0)
   },
   onPageScroll(e) {
     let scrollTop = this.data.scrollTop
