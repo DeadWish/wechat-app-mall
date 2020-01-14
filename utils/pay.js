@@ -40,13 +40,25 @@ function wxpay(type, money, orderId, redirectUrl, data) {
         paySign: res.data.sign,
         fail: function (aaa) {
           wx.showToast({
-            title: '支付失败:' + aaa
+            title: '支付失败'
           })
         },
         success: function () {
           // 提示支付成功
           wx.showToast({
             title: '支付成功'
+          })
+          wx.requestSubscribeMessage({
+            tmplIds: [
+              '_zwDSIqsnqjawvTymPOyKJ5m-xOOshCqxwoGuQ-mkjo',
+              'CMdHW6NUtX-fiDw6KOpZoOov8EEOYgdQ-g-n_OGnyQk'
+            ],
+            success(res) {
+              // console.log('成功获取到权限')
+            },
+            fail(e) {
+              console.error(e)
+            }
           })
           wx.redirectTo({
             url: redirectUrl

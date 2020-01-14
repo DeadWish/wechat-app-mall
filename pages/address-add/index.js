@@ -123,6 +123,9 @@ Page({
     var address = e.detail.value.address;
     var mobile = e.detail.value.mobile;
     var code = e.detail.value.code;
+    if (code == "") {
+      code = "000000"
+    }
     if (linkMan == ""){
       wx.showModal({
         title: '提示',

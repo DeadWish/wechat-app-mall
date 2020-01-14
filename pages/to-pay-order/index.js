@@ -96,10 +96,13 @@ Page({
   },
   goCreateOrder(){
     wx.requestSubscribeMessage({
-      tmplIds: ['ITVuuD_cwYN-5BjXne8cSktDo43xetj0u-lpvFZEQQs',
-        'dw9Tzh9r0sw7Gjab0ovQJx3bP3gdXmF_FZvpnxPd6hc'],
+      tmplIds: [
+        'QsOsqGyDg4cmJPBHnTeTFRQ6A1L8ejFHOkVdqMd9maQ',
+        'ID39FWD3s3IBS5PEVk0wx2ztoeT15j56cgXiGPAVHtE',
+        'zyBUCxNVhyGRgXHo721X46l7P0QuMGxKb8ZpxST-tsc'
+        ],
       success(res) {
-        
+        // console.log('成功获取到权限')
       },
       fail(e) {
         console.error(e)
