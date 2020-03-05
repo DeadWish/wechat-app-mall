@@ -1,4 +1,8 @@
 <view class="container">
+<scroll-view scroll-into-view="{{toView}}" 
+    scroll-y="true" 
+    scroll-with-animation="true"
+    style="height: 100%">
   <view class="page__bd">
     <view class="weui-search-bar">
       <view class="weui-search-bar__form">
@@ -106,9 +110,8 @@
     </view>
   </block>
 
-  <view class='space'></view>
   <view class="weui-loadmore weui-loadmore_line">
-    <view class="weui-loadmore__tips weui-loadmore__tips_in-line">商品列表</view>
+    <view id="search_anchor" class="weui-loadmore__tips weui-loadmore__tips_in-line">商品列表</view>
   </view>
   <view class="goods-container">
     <view class="goods-box" wx:for-items="{{goods}}" wx:key="{{index}}" bindtap="toDetailsTap" data-id="{{item.id}}">
@@ -125,6 +128,7 @@
   <view hidden="{{loadingMoreHidden ? true : false}}" class="weui-loadmore weui-loadmore_line" style='margin-top:60rpx;margin-bottom:30rpx;'>
     <view class="weui-loadmore__tips weui-loadmore__tips_in-line">没有更多啦</view>
   </view>
+  </scroll-view>
 </view>
 <!-- <view class='coupons-float' bindtap="goCoupons">
   <image src="/images/gift.png"></image>

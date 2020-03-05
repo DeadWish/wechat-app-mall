@@ -12,21 +12,18 @@ Page({
     goodsRecommend: [], // 推荐商品
     kanjiaList: [], //砍价商品列表
     pingtuanList: [], //拼团商品列表
-
     loadingHidden: false, // loading
     selectCurrent: 0,
     categories: [],
     activeCategoryId: 0,
     goods: [],
-    
     scrollTop: 0,
     loadingMoreHidden: true,
-
     coupons: [],
-
     curPage: 1,
     pageSize: 20,
-    cateScrollTop: 0
+    cateScrollTop: 0,
+    toView: ""
   },
 
   tabClick: function(e) {
@@ -218,7 +215,8 @@ Page({
   },
   toSearch: function() {
     this.setData({
-      curPage: 1
+      curPage: 1,
+      toView: "search_anchor"
     });
     this.getGoodsList(this.data.activeCategoryId);
   },
