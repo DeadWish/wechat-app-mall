@@ -143,6 +143,11 @@ Page({
       url: "/pages/shop-cart/index"
     });
   },
+  goHomepage: function() {
+    wx.reLaunch({
+      url: "/pages/index/index"
+    });
+  },
   toAddShopCar: function() {
     this.setData({
       shopType: "addShopCar"

@@ -63,7 +63,7 @@ Page({
   aboutUs : function () {
     wx.showModal({
       title: '关于我们',
-      content: '祝大家使用愉快！',
+      content: '【出岛以后】让你尝到原汁原味的海南岛特产！',
       showCancel:false
     })
   },

@@ -155,13 +155,16 @@
       <text style="color:red">（{{reputation.length}}）</text>
     </view>
     <view class="goods-text" style="margin-top:15rpx;" wx:for="{{reputation}}" wx:key="id">
-      <view style="width:100rpx;float:left;">
-        <image style="width: 100rpx; height: 100rpx;" src="{{item.user.avatarUrl}}"></image>
-        <view style="text-align:center;width:100rpx;">{{item.goods.goodReputationStr}}</view>
-      </view>
-      <view style="width:550rpx;float:left;margin-left:35rpx;border-bottom:1px solid #eee;">
-        <view>{{item.goods.goodReputationRemark}}</view>
-        <view style="color: #B0B0B0;font-size:24rpx;">{{item.goods.dateReputation}} {{item.goods.property}}</view>
+      <view wx:if="{{item.goods.goodReputationStr!='差评'}}">
+        <view style="width:100rpx;float:left;">
+         <image style="width: 100rpx; height: 100rpx;" src="{{item.user.avatarUrl}}"></image>
+         <view style="text-align:center;width:100rpx;">{{item.goods.goodReputationStr}}</view>
+        </view>
+
+        <view style="width:550rpx;float:left;margin-left:35rpx;border-bottom:1px solid #eee;">
+          <view>{{item.goods.goodReputationRemark}}</view>
+          <view style="color: #B0B0B0;font-size:24rpx;">{{item.goods.dateReputation}} {{item.goods.property}}</view>
+        </view>
       </view>
     </view>
   </view>
@@ -184,6 +187,9 @@
     <button class="weui-btn" type="warn" bindtap="tobuy">用当前价购买</button>
   </view>
   <view wx:if="{{!curGoodsKanjia}}" class="footer-box safeAreaOldPaddingBttom safeAreaNewPaddingBttom">
+  <view class="homepage" bindtap="goHomepage">
+    <view style='position:absolute;bottom:10rpx;'>主页</view>
+  </view>
     <view class="contact">
       <contact-button style="opacity:0;position:absolute;" type="default-dark" session-from="weapp" size="27"></contact-button>
       <view style='position:absolute;bottom:10rpx;'> 客服 </view>
