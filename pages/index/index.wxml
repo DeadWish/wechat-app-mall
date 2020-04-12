@@ -20,25 +20,19 @@
       </view>
       <view class="weui-search-bar__cancel-btn" hidden="{{!inputShowed}}" bindtap="hideInput">取消</view>
     </view>
-    <!-- <view wx:if="{{noticeList}}" class="notice">
-      <image class="notice_icon" src="/images/notice.png"></image>
-      <swiper wx:if="{{noticeList}}" class="notice_swiper" vertical autoplay circular>
-        <navigator wx:for-items="{{noticeList.dataList}}" wx:key="id" url="/pages/notice/show?id={{item.id}}" open-type="navigate">
-          <swiper-item>
-            <view class="notice_itemr">{{item.title}}</view>
-          </swiper-item>
-        </navigator>
-      </swiper>
-    </view> -->
-
     <view class="swiper-container">
+    <view class="swpier-background">
+    </view>
       <swiper class="swiper_box" indicator-dots="true" indicator-active-color="#fff" autoplay circular>
         <swiper-item wx:for="{{banners}}" wx:key="id">
           <image bindtap="tapBanner" data-id="{{item.businessId}}" src="{{item.picUrl}}" class="slide-image" />
         </swiper-item>
       </swiper>
     </view>
-    <scroll-view scroll-x>
+
+  </view>
+  <view class="category-container">
+      <scroll-view scroll-x>
       <view class="category-box" style='width:{{category_box_width}}rpx;'>
         <view class="category-list" wx:for="{{categories}}" wx:key="*this">
           <view class="category-column {{activeCategoryId == item.id ? 'type-item-on' : ''}}" bindtap="tabClick" id="{{item.id}}">

@@ -2,13 +2,21 @@
 
 <view class="container">
 	<view wx:if="{{apiUserInfoMap}}" class="userinfo">
-		<image wx:if="{{apiUserInfoMap.base.avatarUrl}}" class="userinfo-avatar" src="{{ apiUserInfoMap.base.avatarUrl }}" background-size="cover"></image>
-		<text class="userinfo-nickname">{{ apiUserInfoMap.base.nick }}</text>
+      <image wx:if="{{apiUserInfoMap.base.avatarUrl}}" class="userinfo-avatar" src="{{ apiUserInfoMap.base.avatarUrl }}" background-size="cover"></image>
+      <view class="name-box">
+        <view class="userinfo-nickname">{{ apiUserInfoMap.base.nick }}</view>
+        <view class="userinfo-phone" wx:if="{{userMobile}}" >{{ userMobile }}</view>
+        <view wx:if="{{!userMobile}}" >
+          <button class="bind-phone-bt" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">绑定手机</button>
+        </view>
+      </view>
 	</view>
+
   <view wx:else class="userinfo" style="margin-bottom:50rpx;">
 		<image class="userinfo-avatar" src="/images/nologin.png" background-size="cover"></image>
 		<button class="weui-btn mini-btn" plain="true" size="mini" open-type="getUserInfo" bindgetuserinfo="onGotUserInfo">点击登录账户</button>
 	</view>
+
   <view wx:if="{{ rechargeOpen }}" class="asset">
     <view class='item' bindtap='goAsset'>
       <view>{{balance}}</view>
@@ -23,7 +31,9 @@
       <view>积分</view>
     </view>
   </view>
+
   <view style="height:10rpx;background: #eee;width:100%;"></view>
+  
   <view class="my-item">
     <navigator url="/pages/order-list/index" hover-class="navigator-hover">我的订单</navigator>
   </view>
@@ -95,9 +105,7 @@
   <view class="my-item">
     <navigator url="/pages/coupons/index" hover-class="navigator-hover">领券中心</navigator>
   </view>
-  <view wx:if="{{userMobile}}" class="my-item" style="border:none;padding-right:150rpx;width:auto;">
-    {{userMobile}}
-  </view>
+
   <view style="height:20rpx;background: #eee;width:100%;"></view>
   <view class="my-item" bindtap="aboutUs">
     关于我们
@@ -106,9 +114,6 @@
     退出登录
   </view>
   <view style="height:20rpx;background: #eee;width:100%;"></view>
-  <view wx:if="{{!userMobile}}" class="bind-phone-number">
-    <button style="width:700rpx;" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">绑定手机号码</button>
-  </view>
 </view>
 
 <template is="apifmLogin" data="{{wxlogin: wxlogin}}" />

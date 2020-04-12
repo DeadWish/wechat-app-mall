@@ -30,7 +30,7 @@ page {
 
 .category-container .category.active {
   background: #fff;
-  border-left: 4rpx solid #d81e06;
+  border-left: 4rpx solid #fde432;
   border-top: 1rpx solid #efefef;
   border-bottom: 1rpx solid #efefef;
 }
@@ -45,7 +45,7 @@ page {
 }
 
 .category-container .category .name.active {
-  color: #d81e06;
+  color: #fde432;
   font-weight: bold;
 }
 
@@ -61,7 +61,7 @@ page {
   color: #515151;
   font-size: 22rpx;
   line-height: 30rpx;
-  background: rgba(216, 30, 6, 0.3);
+  background: rgba(216, 216, 6, 0.3);
 }
 
 .goods-container .goods {

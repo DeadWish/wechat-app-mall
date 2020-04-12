@@ -172,8 +172,8 @@ swiper-item image {
   width: 250rpx;
   height: 100%;
   line-height: 100rpx;
-  background-color: #ff6850;
-  color:#fff;
+  background-color: yellow;
+  /* color:#000; */
   font-size: 34rpx;
 }
 .footer-box .now-buy{
@@ -181,8 +181,8 @@ swiper-item image {
   height: 100%;
   width: 250rpx;
   line-height: 100rpx;
-  background-color: #e64340;
-  color:#fff;
+  background-color: #ffd900fd;
+  /* color:#000; */
   font-size: 34rpx;
 }
 .show-popup{

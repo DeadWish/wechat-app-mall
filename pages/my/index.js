@@ -115,6 +115,7 @@ Page({
         if (res.data.base.mobile) {
           _data.userMobile = res.data.base.mobile
         }
+        console.log(res);
         that.setData(_data);
       }
     })
@@ -123,6 +124,12 @@ Page({
     var that = this;
     WXAPI.userAmount(wx.getStorageSync('token')).then(function (res) {
       if (res.code == 0) {
+        /*
+        balance 可用余额
+        score 可用积分
+        growth 当前成长值
+        totleConsumed 累计消费金额
+        */
         that.setData({
           balance: res.data.balance.toFixed(2),
           freeze: res.data.freeze.toFixed(2),
