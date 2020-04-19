@@ -115,7 +115,6 @@ Page({
         if (res.data.base.mobile) {
           _data.userMobile = res.data.base.mobile
         }
-        console.log(res);
         that.setData(_data);
       }
     })

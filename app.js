@@ -2,7 +2,13 @@ const WXAPI = require('apifm-wxapi')
 const CONFIG = require('config.js')
 const AUTH = require('utils/auth')
 App({
-  onLaunch: function() {
+  onLaunch: function(e) {
+    //初始化云开发环境
+    wx.cloud.init({
+      env: 'cdyh-online',
+      traceUser: true
+    })
+  
     WXAPI.init(CONFIG.subDomain) // 从根目录的 config.js 文件中读取
     const that = this;
     // 检测新版本
@@ -79,6 +85,7 @@ App({
         that.globalData.order_reputation_score = res.data[0].score;
       }
     })
+    //判断
   },
   goStartIndexPage: function() {
     setTimeout(function() {
@@ -86,39 +93,98 @@ App({
         url: "/pages/start/start"
       })
     }, 1000)
-  },  
-  onShow (e) {
-    this.globalData.launchOption = e
-    // 保存邀请人
-    if (e && e.query && e.query.inviter_id) {
-      wx.setStorageSync('referrer', e.query.inviter_id)
-      if (e.shareTicket) {
-        // 通过分享链接进来
-        wx.getShareInfo({
-          shareTicket: e.shareTicket,
-          success: res => {
-            // console.error(res)
-            // console.error({
-            //   referrer: e.query.inviter_id,
-            //   encryptedData: res.encryptedData,
-            //   iv: res.iv
-            // })
-            WXAPI.shareGroupGetScore(
-              e.query.inviter_id,
-              res.encryptedData,
-              res.iv
-            )
-          }
-        })
-      }
-    }
-    // 自动登录
-    AUTH.checkHasLogined().then(isLogined => {
-      if (!isLogined) {
-        AUTH.login()
-      }
-    })
   },
+  onShow (e) {
+      this.globalData.launchOption = e
+      // 自动登录
+      AUTH.checkHasLogined().then(isLogined => {
+        if (!isLogined) {
+          AUTH.login()
+        }
+      })
+      //
+      let isFromOrderShare = e && e.query && e.query.inviter_id && e.query.share_order_number;
+      if (isFromOrderShare) {
+        wx.setStorageSync('referrer', e.query.inviter_id)
+        let orderId = e.query.share_order_number;
+        let shareUserName = e.query.share_user_name;
+        //给点击人发红包
+        //1.判断这个订单有没有超过20
+        (async () => {
+          const db = wx.cloud.database();
+          const collection = db.collection('share_coupon_recorder');
+
+          const total = await collection.where({
+            orderid: orderId,
+          }).count().then(function (res) {
+            return res.total;
+          }).catch(function (err) {
+            console.log(err);
+          })
+
+          console.log(total, 'total');
+          if (total >= 20) {
+              return ;//无法继续领取
+          }
+
+          //1.判断点击人有没有领取过这个红包，通过订单号和点击人UID
+          let isSendedClickUser = await collection.where({
+            userid: wx.getStorageSync('uid'),
+            orderid: orderId,
+            type: 'click_user'
+          }).limit(1).get().then(function (res) {
+            if (res.data.length == 0) {
+              //没有结果，证明没有发过
+              return false;
+            } else {
+              return true;
+            }
+            }).catch(function (err) {
+              console.log(err);
+            });
+
+          console.log(isSendedClickUser, '是否领取过红包');
+
+          //2.没有发就发,发完以后记录,记录以后就弹窗
+          if (!isSendedClickUser) {
+            collection.add({
+              data: {
+                userid: wx.getStorageSync('uid'),
+                orderid: orderId,
+                type: 'click_user',
+                created_at: new Date()
+              }
+            }).then(function () {
+                //WXAPI.发送50减3的红包
+                WXAPI.fetchCoupons({
+                  pwd: '不告诉任何人fx9SJyr7YEUce',
+                  token: wx.getStorageSync('token'),
+                }).then(fetchCouopnsSuccess => {
+                  console.log(fetchCouopnsSuccess, '发送红包后返回')
+                  if (fetchCouopnsSuccess.code == 0) {
+                    //弹窗通知
+                    wx.showModal({
+                      title: '恭喜你！',
+                      content: '获得' + shareUserName + '分享的3元红包，满50元可用！',
+                      showCancel: false,
+                      confirmText: "去看看",
+                      success: function () {
+                        wx.redirectTo({
+                          url: "/pages/coupons/index?activeIndex=1"
+                        })
+                      }
+                    })
+                  }
+                }).catch(function (err) {
+                    console.log(err);
+                });
+              }).catch(function (err) {
+                console.log(err);
+              })
+          }
+        })()
+      };
+    },
   globalData: {                
     isConnected: true,
     launchOption: undefined,

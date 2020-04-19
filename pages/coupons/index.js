@@ -24,6 +24,13 @@ Page({
    */
   onLoad: function (options) {
     var that = this;
+
+    if (options.activeIndex) {
+      this.setData({
+        activeIndex: options.activeIndex,
+      });
+    }
+    
     wx.getSystemInfo({
       success: function (res) {
         that.setData({

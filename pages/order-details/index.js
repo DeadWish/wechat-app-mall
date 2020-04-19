@@ -14,6 +14,19 @@ Page({
       this.setData({
         orderId: orderId
       });
+      wx.showShareMenu({
+        withShareTicket: true
+      })
+
+      if (! wx.getStorageSync('nick')) {
+        WXAPI.userDetail(wx.getStorageSync('token')).then(function (res) {
+          if (res.code == 0) {
+            wx.setStorageSync('nick', res.data.base.nick)
+          } else {
+            wx.setStorageSync('nick', '其他用户')
+          }
+        });
+      }
     },
     onShow : function () {
       var that = this;
@@ -99,5 +112,12 @@ Page({
           that.onShow();
         }
       })
+    },
+  onShareAppMessage: function (res) {
+    return {
+      title: '我在这买了海南美味，推荐给你！20张优惠先到先得！',
+      path: 'pages/index/index?inviter_id=' + wx.getStorageSync('uid') + '&share_order_number=' + this.data.orderDetail.orderInfo.orderNumber + '&share_user_name=' + wx.getStorageSync('nick'),
+      imageUrl: this.data.orderDetail.goods[0].pic
     }
+  }
 })

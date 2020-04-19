@@ -28,6 +28,8 @@
 	"scripts": {},
 	"simulatorType": "wechat",
 	"simulatorPluginLibVersion": {},
+	"cloudfunctionTemplateRoot": "cloudfunctionTemplate",
+	"cloudfunctionRoot": "functions/",
 	"condition": {
 		"search": {
 			"current": -1,
@@ -81,10 +83,10 @@
 					"scene": null
 				},
 				{
-					"id": -1,
-					"name": "砍价详情页面",
-					"pathName": "pages/goods-details/index",
-					"query": "id=6765&kjJoinUid=701677",
+					"id": 4,
+					"name": "pages/coupons/index",
+					"pathName": "pages/coupons/index",
+					"query": "activeIndex=1",
 					"scene": null
 				},
 				{

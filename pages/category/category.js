@@ -73,7 +73,6 @@ Page({
       that.setData({
         currentGoods: res.data
       });
-      console.log(res.data);
       wx.hideNavigationBarLoading();
     }).catch((e) => {
       wx.hideNavigationBarLoading();
