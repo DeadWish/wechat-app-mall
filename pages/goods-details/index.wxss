@@ -181,7 +181,7 @@ swiper-item image {
   height: 100%;
   width: 250rpx;
   line-height: 100rpx;
-  background-color: #ffd900fd;
+  background-color: #ffd800;/*ffd800
   /* color:#000; */
   font-size: 34rpx;
 }
@@ -311,8 +311,8 @@ swiper-item image {
   text-align: center;
   line-height: 89rpx;
   font-size:34rpx;
-  color:#ffffff;
-  background-color: #ffd900fd;
+  color:#000;
+  background-color: #ffd800;
 }
 .buy-num-box .num-box .hui{
   background-color: #f5f5f9;
