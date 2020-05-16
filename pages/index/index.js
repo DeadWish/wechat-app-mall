@@ -36,7 +36,8 @@ Page({
     this.setData({
       activeCategoryId: e.currentTarget.id,
       curPage: 1,
-      cateScrollTop: offset
+      cateScrollTop: offset,
+      inputVal: "",
     });
     this.getGoodsList(this.data.activeCategoryId);
   },
@@ -137,11 +138,6 @@ Page({
   onShow: function(e){
     // 获取购物车数据，显示TabBarBadge
     TOOLS.showTabBarBadge();
-    this.setData({
-      activeCategoryId: 0,
-      curPage: 1,
-    });
-    this.getGoodsList(0)
   },
   onPageScroll(e) {
     let scrollTop = this.data.scrollTop
@@ -149,7 +145,7 @@ Page({
       scrollTop: e.scrollTop
     })
   },
-  getGoodsList: function(categoryId, append) {
+  getGoodsList: function(categoryId, append, isSearch) {
     if (categoryId == 0) {
       categoryId = "";
     }
@@ -181,10 +177,16 @@ Page({
       for (var i = 0; i < res.data.length; i++) {
         goods.push(res.data[i]);
       }
+
       that.setData({
         loadingMoreHidden: true,
         goods: goods,
       });
+
+      if (isSearch) {
+        
+      }
+      
     })
   },
   getCoupons: function() {
@@ -214,11 +216,16 @@ Page({
     })
   },
   toSearch: function() {
+    var that = this;
     this.setData({
+      activeCategoryId: 0,
       curPage: 1,
-      toView: "search_anchor"
+    }, () => {
+      that.setData({
+        toView: "search_anchor"
+      })
     });
-    this.getGoodsList(this.data.activeCategoryId);
+    this.getGoodsList(0,false,true);
   },
   onReachBottom: function() {
     this.setData({
