@@ -46,20 +46,19 @@
       </view>
     </view>
   </view>
-  <view class="peisong-way" hidden="{{hasNoCoupons}}">
+  <view wx:if="{{!hasNoCoupons}}" class="peisong-way">
     <view class="row-box" style="border-bottom:none;">
       <view class="row-label">选择使用优惠券</view>
     </view>
-    <view class="row-box" style="border-bottom:none;">
-      <picker-view indicator-style="height: 50rpx;" style="width: 100%; height: 150rpx;" value="0" bindchange="bindChangeCoupon">
+    <view class="row-box" style="border-bottom:none;padding-top:0">
+      <picker-view class="picker-view-coupons" indicator-class="picker-box" value="0" bindchange="bindChangeCoupon">
         <picker-view-column>
-          <view style="line-height: 50px">不使用优惠券</view>
-          <view wx:for="{{coupons}}" wx:key="id" style="line-height: 50px">{{item.money}}元 {{item.name}}</view>
+          <view class="picker-line">不使用优惠券</view>
+          <view class="picker-line" wx:for="{{coupons}}" wx:key="id">{{item.money}}元 {{item.name}}</view>
         </picker-view-column>
       </picker-view>
     </view>
   </view>
-
 
   <view class="goods-info" wx:if="{{(isNeedLogistics > 0 && yunPrice > 0) || (!hasNoCoupons)}}">
     <view class="row-box" wx:if="{{isNeedLogistics > 0 && yunPrice > 0}}">

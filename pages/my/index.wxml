@@ -4,7 +4,14 @@
 	<view wx:if="{{apiUserInfoMap}}" class="userinfo">
       <image wx:if="{{apiUserInfoMap.base.avatarUrl}}" class="userinfo-avatar" src="{{ apiUserInfoMap.base.avatarUrl }}" background-size="cover"></image>
       <view class="name-box">
-        <view class="userinfo-nickname">{{ apiUserInfoMap.base.nick }}</view>
+        <view class="userinfo-nickname">
+        {{ apiUserInfoMap.base.nick }}
+        <view wx:if="{{vipLevel > 0}}" style="border:1px solid #aaa;border-radius:3px;display:inline;font-size:15px;color:#aaa;padding:2px">
+          <image src="{{levelImageSrc}}" style="margin-top:3px;width:22px;height:18px;margin-bottom:-5px;">
+          </image>
+          {{vipName}}
+        </view>
+        </view>
         <view class="userinfo-phone" wx:if="{{userMobile}}" >{{ userMobile }}</view>
         <view wx:if="{{!userMobile}}" >
           <button class="bind-phone-bt" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">绑定手机</button>

@@ -38,13 +38,17 @@ async function login(page){
           })
           return;
         }
-        console.log(res.data);
 
         wx.setStorageSync('token', res.data.token)
         wx.setStorageSync('uid', res.data.uid)
 
         WXAPI.userDetail(wx.getStorageSync('token')).then(function (res) {
           if (res.code == 0) {
+            if (res.data.userLevel) {
+              wx.setStorageSync('level', res.data.userLevel.name)
+            } else {
+              wx.setStorageSync('level', "")
+            }
             wx.setStorageSync('nick', res.data.base.nick)
           } else {
             wx.setStorageSync('nick', '其他用户')

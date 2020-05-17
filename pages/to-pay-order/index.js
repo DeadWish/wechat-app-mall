@@ -288,7 +288,9 @@ Page({
         if (coupons.length > 0) {
           that.setData({
             hasNoCoupons: false,
-            coupons: coupons
+            coupons: coupons,
+            // youhuijine: this.data.coupons[0].money,
+            // curCoupon: this.data.coupons[0]
           });
         }
       }

@@ -7,12 +7,11 @@ const TOOLS = require('../../utils/tools.js')
 Page({
 	data: {
     wxlogin: true,
-
     balance:0.00,
     freeze:0,
     score:0,
     score_sign_continuous:0,
-    rechargeOpen: false // 是否开启充值[预存]功能
+    rechargeOpen: false, // 是否开启充值[预存]功能
   },
 	onLoad() {
     let rechargeOpen = wx.getStorageSync('RECHARGE_OPEN')
@@ -27,10 +26,27 @@ Page({
 	},	
   onShow() {
     const _this = this
+    let levelImageSrc;
+    switch (app.globalData.vipLevel) {
+      case 1:
+        levelImageSrc = "https://dcdn.it120.cc/2020/05/16/cec1f219-7074-4a2f-bb24-fa97202f22af.png";
+        break;
+      case 2:
+        levelImageSrc = "https://dcdn.it120.cc/2020/05/16/03c8e56c-5f67-4248-b961-88726477b5f7.png";
+        break;
+      case 3:
+        levelImageSrc = "https://dcdn.it120.cc/2020/05/16/4ba93bd1-ec6f-437c-8e07-43d21aec4ed9.png";
+        break;
+      case 4:
+        levelImageSrc = "https://dcdn.it120.cc/2020/05/16/f8da66ab-e165-4a25-a438-787e5e4e31ba.png";
+        break;  
+    }
     this.setData({
       version: CONFIG.version,
-      vipLevel: app.globalData.vipLevel
+      vipLevel: app.globalData.vipLevel,
+      levelImageSrc: levelImageSrc,
     })
+    console.log(app.globalData);
     AUTH.checkHasLogined().then(isLogined => {
       this.setData({
         wxlogin: isLogined
@@ -115,6 +131,12 @@ Page({
         if (res.data.base.mobile) {
           _data.userMobile = res.data.base.mobile
         }
+        if (res.data.userLevel) {
+          _data.vipName = res.data.userLevel.name
+        } else {
+          _data.vipName = ""
+        }
+
         that.setData(_data);
       }
     })
