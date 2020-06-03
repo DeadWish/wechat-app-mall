@@ -70,6 +70,8 @@ Page({
         return
       }
 
+      console.log(res.data);
+      
       that.setData({
         currentGoods: res.data
       });

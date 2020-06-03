@@ -6,3 +6,17 @@
   color:#333;
   font-size:14px;
 }
+
+.kefu-view {
+  display: flex;    /*设置显示样式**/
+  align-items: center;    /**子view垂直居中*/
+  vertical-align: center; /**垂直居中*/
+  justify-content: center; /**内容居中*/
+  flex-direction:column;
+}
+
+.kefu-qrcode-image {
+  width: 300rpx;
+  height: 300rpx;
+  border-radius: 5px;
+}

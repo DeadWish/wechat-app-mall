@@ -1,4 +1,4 @@
-<image class="logo" src="/images/fxad.jpeg" mode="widthFix" />
+<image class="logo" src="/images/fxad1.png" mode="widthFix" />
 <view class="weui-cells__title title">请填写申请信息</view>
 <view class="weui-cells weui-cells_after-title">
   <view wx:if="{{ userDetail && userDetail.referrer }}" class="weui-cell weui-cell_input">
@@ -36,7 +36,16 @@
     </view>
   </view>
 </view>
-<view class="weui-cells__tips">成为分销商后卖出商品，您可以获得佣金</view>
+<view class="weui-cells__tips">
+成为分享官后卖出商品，您可以获得佣金！请添加客服小黄鸭微信（hnkfxm）获取申请状态通知。未添加客服微信无法成为分享官。
+</view>
+
+<view class="kefu-view">
+  <image class="kefu-qrcode-image" src="/images/kefu_qrcode.jpeg" />
+  <view class="weui-tab__content_title">
+    截图扫码 添加微信
+  </view>
+</view>
 <view class="weui-btn-area">
-  <button class="weui-btn" type="primary" bindtap="bindSave">申请成为分销商</button>
+  <button class="weui-btn" type="primary" bindtap="bindSave">申请成为分享官</button>
 </view>

@@ -26,7 +26,7 @@ Page({
 
     withDrawlogs: undefined,
     depositlogs: undefined,
-
+    isSeller: false,
     rechargeOpen: false // 是否开启充值[预存]功能
   },
 
@@ -50,9 +50,18 @@ Page({
     } else {
       rechargeOpen = false
     }
-    this.setData({
-      rechargeOpen: rechargeOpen
-    })
+    
+    if (wx.getStorageSync('isSeller')) {
+      this.setData({
+        rechargeOpen: rechargeOpen,
+        tabs: ["资金明细", "提现记录"],
+        isSeller: true,
+      })
+    } else {
+      this.setData({
+        rechargeOpen: rechargeOpen
+      })
+    }
   },
 
   /**

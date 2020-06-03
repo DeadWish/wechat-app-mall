@@ -128,6 +128,7 @@ Page({
       if (res.code == 0) {
         let _data = {}
         _data.apiUserInfoMap = res.data
+        wx.setStorageSync('isSeller', res.data.base.isSeller);
         if (res.data.base.mobile) {
           _data.userMobile = res.data.base.mobile
         }
@@ -192,7 +193,7 @@ Page({
   getVipDetail() {
     wx.showModal({
       title: '会员说明',
-      content: "订单交易成功满199元，升级白银会员，享受全场购物9.8折优惠（特价产品除外）\r\n订单交易成功满599元，升级黄金会员，享受全场购物9.6折优惠（特价产品除外）\r\n订单交易成功满1099元，升级铂金会员，享受全场购物9.5折优惠（特价产品除外）",
+      content: "订单交易成功满199元，升级白银会员，享受全场购物9.8折优惠（特价产品除外）\r\n订单交易成功满599元，升级黄金会员，享受全场购物9.6折优惠（特价产品除外）\r\n订单交易成功满1099元，升级钻石会员，享受全场购物9.5折优惠（特价产品除外）",
       showCancel:false,
 
     })

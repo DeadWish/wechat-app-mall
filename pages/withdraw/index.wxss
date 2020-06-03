@@ -21,7 +21,8 @@ page{
     /*justify-content: space-between;*/
 }
 .row-wrap .label{
-    width: 160rpx;
+    margin-right: 10px;
+    /* width: 160rpx; */
     color: #000
 }
 .row-wrap .label-right{
