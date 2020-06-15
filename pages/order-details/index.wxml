@@ -12,8 +12,29 @@
                 <view class="status red">{{orderDetail.orderInfo.statusStr}}</view>
                 <view class="des" hidden="true">请于11时59分59秒内付款，超时订单将自动关闭</view>
             </view>
+            <block wx:if="orderDetail.orderInfo.status==2">
+                <form bindsubmit="confirmBtnTap" report-submit="true">
+                    <view class="btn-row" wx:if="{{orderDetail.orderInfo.status==2}}">
+                        <button class="confirm-btn" formType="submit">确认收货</button>
+                    </view>
+                </form>
+            </block>
         </view>
         <block wx:if="{{orderDetail.logistics}}">
+          <view class="address-sec">
+              <view class="icon-box">
+                  <image class="icon" src="/images/order-details/icon-address.png"></image>
+              </view>
+              <view class="right-box">
+                  <view class="name-tel">{{orderDetail.logistics.linkMan}}  {{orderDetail.logistics.mobile}}</view>
+                  <view class="text">
+                    {{orderDetail.logistics.provinceStr}}
+                    {{orderDetail.logistics.cityStr}}
+                    {{orderDetail.logistics.areaStr}}
+                    {{orderDetail.logistics.address}}
+                  </view>
+              </view>
+          </view>
           <view wx:if="{{orderDetail.logisticsTraces}}" class="wuliu-box">
               <view class="icon-box">
                   <image class="icon" src="/images/order-details/icon-wuliu.png"></image>
@@ -36,20 +57,6 @@
               <view class="right-text">
                   <view class="order-number">快递单号：{{orderDetail.logistics.trackingNumber}}</view>
                   <view class="wuliu-text">暂无物流信息</view>
-              </view>
-          </view>
-          <view class="address-sec">
-              <view class="icon-box">
-                  <image class="icon" src="/images/order-details/icon-address.png"></image>
-              </view>
-              <view class="right-box">
-                  <view class="name-tel">{{orderDetail.logistics.linkMan}}  {{orderDetail.logistics.mobile}}</view>
-                  <view class="text">
-                    {{orderDetail.logistics.provinceStr}}
-                    {{orderDetail.logistics.cityStr}}
-                    {{orderDetail.logistics.areaStr}}
-                    {{orderDetail.logistics.address}}
-                  </view>
               </view>
           </view>
         </block>
@@ -93,11 +100,7 @@
                 <button type="submit" class="confirm-btn" formType="submit">提交评价</button>
             </view>
             </form>
-            <form bindsubmit="confirmBtnTap" report-submit="true">
-            <view class="btn-row" wx:if="{{orderDetail.orderInfo.status==2}}">
-                <button class="confirm-btn" formType="submit">确认收货</button>
-            </view>
-            </form>
+            
     </view>
     <view class="peisong-way" hidden="true">
         <view class="row-box">

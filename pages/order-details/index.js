@@ -39,6 +39,7 @@ Page({
           })
           return;
         }
+        console.log(res.data);
         that.setData({
           orderDetail: res.data
         });
