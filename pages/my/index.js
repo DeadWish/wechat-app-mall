@@ -46,7 +46,6 @@ Page({
       vipLevel: app.globalData.vipLevel,
       levelImageSrc: levelImageSrc,
     })
-    console.log(app.globalData);
     AUTH.checkHasLogined().then(isLogined => {
       this.setData({
         wxlogin: isLogined

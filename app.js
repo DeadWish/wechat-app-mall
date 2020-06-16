@@ -122,7 +122,6 @@ App({
             console.log(err);
           })
 
-          console.log(total, 'total');
           if (total >= 20) {
               return ;//无法继续领取
           }
@@ -143,8 +142,6 @@ App({
               console.log(err);
             });
 
-          console.log(isSendedClickUser, '是否领取过红包');
-
           //2.没有发就发,发完以后记录,记录以后就弹窗
           if (!isSendedClickUser) {
             collection.add({
@@ -160,7 +157,6 @@ App({
                   pwd: '不告诉任何人fx9SJyr7YEUce',
                   token: wx.getStorageSync('token'),
                 }).then(fetchCouopnsSuccess => {
-                  console.log(fetchCouopnsSuccess, '发送红包后返回')
                   if (fetchCouopnsSuccess.code == 0) {
                     //弹窗通知
                     wx.showModal({

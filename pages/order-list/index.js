@@ -95,11 +95,9 @@ Page({
           confirmText: "确认支付",
           cancelText: "取消支付",
           success: function (res) {
-            console.log(res);
             if (res.confirm) {
               that._toPayTap(orderId, money)
             } else {
-              console.log('用户点击取消支付')
             }
           }
         });

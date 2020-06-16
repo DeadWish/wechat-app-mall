@@ -102,7 +102,6 @@ Page({
         'zyBUCxNVhyGRgXHo721X46l7P0QuMGxKb8ZpxST-tsc'
         ],
       success(res) {
-        // console.log('成功获取到权限')
       },
       fail(e) {
         console.error(e)
@@ -258,7 +257,6 @@ Page({
 
     }
     goodsJsonStr += "]";
-    //console.log(goodsJsonStr);
     that.setData({
       isNeedLogistics: isNeedLogistics,
       goodsJsonStr: goodsJsonStr
@@ -305,7 +303,6 @@ Page({
       });
       return;
     }
-    //console.log("selIndex:" + selIndex);
     this.setData({
       youhuijine: this.data.coupons[selIndex].money,
       curCoupon: this.data.coupons[selIndex]

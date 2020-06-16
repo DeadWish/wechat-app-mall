@@ -54,7 +54,6 @@ function wxpay(type, money, orderId, redirectUrl, data) {
               'CMdHW6NUtX-fiDw6KOpZoOov8EEOYgdQ-g-n_OGnyQk'
             ],
             success(res) {
-              // console.log('成功获取到权限')
             },
             fail(e) {
               console.error(e)

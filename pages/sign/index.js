@@ -66,9 +66,6 @@ Page({
       afterTapDay: (currentSelect, allSelectedDays) => {
         // 不是今天，直接 return 
         const myDate = new Date();
-        // console.log('y:', myDate.getFullYear())
-        // console.log('m:', myDate.getMonth() + 1)
-        // console.log('d:', myDate.getDate())
         if (myDate.getFullYear() != currentSelect.year ||
           (myDate.getMonth() + 1) != currentSelect.month ||
           myDate.getDate() != currentSelect.day) {

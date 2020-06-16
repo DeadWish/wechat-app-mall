@@ -39,8 +39,39 @@ Page({
           })
           return;
         }
-        console.log(res.data);
+        if (res.data.orderLogisticsShippers && res.data.orderLogisticsShipperLogs && res.data.goods) {
+          let shippers = res.data.orderLogisticsShippers;
+          let shipperLogs = res.data.orderLogisticsShipperLogs;
+          let goods = res.data.goods;
+          var shipperDatas = new Array();
+          for (let i = 0; i < shippers.length; i++) {
+            let shipper = shippers[i];
+            var oneShipperData = {
+              shipper: shipper
+            };
+          
+            if (oneShipperData.shipper.logisticsTraces) {
+              oneShipperData.shipper.logisticsTraces = JSON.parse(shipper.traces)
+            }
+
+            for (let j = 0; j < shipperLogs.length; j++) {
+              let shipperLog = shipperLogs[j];
+              var shipperGoods = new Array();
+              if (shipperLog.logisticsShipperId == shipper.id) {
+                for (let k = 0; k < goods.length; k++) {
+                  if (shipperLog.orderGoodsId == goods[k].id) {
+                    //这个商品属于 这个快递 
+                    shipperGoods.push(goods[k]);
+                  }
+                }
+                oneShipperData.goods = shipperGoods;
+              }
+            }
+            shipperDatas.push(oneShipperData);
+          }
+        }
         that.setData({
+          shipperDatas: shipperDatas,
           orderDetail: res.data
         });
       })
@@ -63,9 +94,10 @@ Page({
       }
     },
     wuliuDetailsTap:function(e){
-      var orderId = e.currentTarget.dataset.id;
+      let orderId = e.currentTarget.dataset.orderid;
+      let shipperId = e.currentTarget.dataset.shipperid;
       wx.navigateTo({
-        url: "/pages/wuliu/index?id=" + orderId
+        url: "/pages/wuliu/index?id=" + orderId + "&shipperid=" + shipperId
       })
     },
     confirmBtnTap:function(e){

@@ -126,8 +126,6 @@ Page({
     }
     needPayAmount = needPayAmount.toFixed(2) // 需要买单支付的金额
     const wxpayAmount = (needPayAmount - userMoney.data.balance).toFixed(2) // 需要额外微信支付的金额
-    console.log(needPayAmount)
-    console.log(wxpayAmount)
     
     if (wxpayAmount > 0) {
       _msg += ',仍需微信支付 ' + wxpayAmount + ' 元'
@@ -138,7 +136,6 @@ Page({
       confirmText: "确认支付",
       cancelText: "取消支付",
       success: function (res) {
-        console.log(res);
         if (res.confirm) {
           _this.goPay(amount, wxpayAmount)
         }
