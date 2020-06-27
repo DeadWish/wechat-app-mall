@@ -50,7 +50,7 @@ Page({
               shipper: shipper
             };
           
-            if (oneShipperData.shipper.logisticsTraces) {
+            if (oneShipperData.shipper.traces) {
               oneShipperData.shipper.logisticsTraces = JSON.parse(shipper.traces)
             }
 
@@ -70,6 +70,10 @@ Page({
             shipperDatas.push(oneShipperData);
           }
         }
+
+        console.log(shipperDatas,'shipperDatas')
+        console.log(res.data,'orderDetail')
+        
         that.setData({
           shipperDatas: shipperDatas,
           orderDetail: res.data
