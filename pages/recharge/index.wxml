@@ -14,9 +14,6 @@
           <label class="radio">
             <radio value="wx" checked /> 微信支付
           </label>
-          <label class="radio" style='margin-left:20rpx;'>
-            <radio value="alipay" /> 支付宝
-          </label>
         </radio-group>
       </view>
     </view>

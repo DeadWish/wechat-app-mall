@@ -119,32 +119,8 @@ Page({
     that.setData({
       showalipay: e.detail.value.type == 'alipay'
     })
-    if (e.detail.value.type == 'wx') {
-      // 微信充值
-      wxpay.wxpay('recharge', amount, 0, "/pages/my/index");
-    } else {
-      // 支付宝充值
-      WXAPI.alipay({
-        token: wx.getStorageSync('token'),
-        money: amount
-      }, 'post').then(res => {
-        if (res.code != 0) {
-          wx.showModal({
-            title: '错误',
-            content: res.msg,
-            showCancel: false
-          })
-          return
-        }
-        drawQrcode({
-          width: 200,
-          height: 200,
-          canvasId: 'myQrcode',
-          text: res.data,
-          _this: that
-        })
-      })
-    }
+    // 微信充值
+    wxpay.wxpay('recharge', amount, 0, "/pages/my/index");
   },
   saveToMobile: function () {
     wx.canvasToTempFilePath({
