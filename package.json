@@ -4,7 +4,9 @@
   "description": "微信小程序商城，微信小程序微店",
   "main": "app.js",
   "dependencies": {
-    "apifm-wxapi": "^2.0.0"
+    "@vant/weapp": "^1.4.0",
+    "apifm-wxapi": "^2.0.0",
+    "vant-weapp": "^0.5.28"
   },
   "devDependencies": {},
   "scripts": {

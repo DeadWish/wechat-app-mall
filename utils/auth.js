@@ -46,8 +46,10 @@ async function login(page){
           if (res.code == 0) {
             if (res.data.userLevel) {
               wx.setStorageSync('level', res.data.userLevel.name)
+              wx.setStorageSync('rebate', res.data.userLevel.rebate)
             } else {
               wx.setStorageSync('level', "")
+              wx.setStorageSync('rebate', 10)
             }
             wx.setStorageSync('nick', res.data.base.nick)
           } else {

@@ -29,6 +29,7 @@
 
 .name-box {
   float: left;
+  width: 70%;
 }
 
 .userinfo-nickname {
@@ -133,4 +134,14 @@
 .bind-phone-number{
   margin: 20rpx;
   width: 100%;
+}
+
+.userinfo-nickname-str {
+  display: inline-block;
+  line-height: 20px;
+  max-width: 55%;
+  word-break: break-all;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
 }

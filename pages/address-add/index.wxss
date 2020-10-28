@@ -81,7 +81,12 @@ picker {
     min-width: 20rpx;
     height: 100%;
     margin-right: 20rpx;
+    flex:auto;
 }
 .hui{
     color: #777;
+}
+
+.addr-textarea {
+    flex:auto;
 }

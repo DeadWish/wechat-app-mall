@@ -58,7 +58,28 @@ Page({
       selectCurrent: e.index
     })
   },
-  onLoad: function(e) { 
+  onLoad: function(e) {
+    WXAPI.userDetail(wx.getStorageSync('token')).then(function (res) {
+      if (res.code == 0) {
+        if (res.data.userLevel) {
+          wx.setStorageSync('level', res.data.userLevel.name)
+          wx.setStorageSync('rebate', res.data.userLevel.rebate)
+        } else {
+          wx.setStorageSync('level', "")
+          wx.setStorageSync('rebate', 10)
+        }
+        wx.setStorageSync('nick', res.data.base.nick)
+      } else {
+        wx.setStorageSync('nick', '其他用户')
+      }
+    });
+    
+    this.setData({
+      vipName: wx.getStorageSync('level'),
+      nick: wx.getStorageSync('nick'),
+      vipRebate: wx.getStorageSync('rebate')
+    })
+
     wx.showShareMenu({
       withShareTicket: true
     }) 
@@ -138,6 +159,7 @@ Page({
   onShow: function(e){
     // 获取购物车数据，显示TabBarBadge
     TOOLS.showTabBarBadge();
+    this.miaoshaGoods();
   },
   onPageScroll(e) {
     let scrollTop = this.data.scrollTop
@@ -289,5 +311,24 @@ Page({
         })
       }
     })
-  }
+  },
+  async miaoshaGoods(){
+    const res = await WXAPI.goods({
+      miaosha: true
+    })
+    if (res.code == 0) {
+      res.data.forEach(ele => {
+        const _now = new Date().getTime()
+        if (ele.dateStart) {
+          ele.dateStartInt = new Date(ele.dateStart.replace(/-/g, '/')).getTime() - _now
+        }
+        if (ele.dateEnd) {
+          ele.dateEndInt = new Date(ele.dateEnd.replace(/-/g, '/')).getTime() -_now
+        }
+      })
+      this.setData({
+        miaoshaGoods: res.data
+      })
+    }
+  },
 })

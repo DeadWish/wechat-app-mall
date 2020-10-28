@@ -5,12 +5,14 @@
       <image wx:if="{{apiUserInfoMap.base.avatarUrl}}" class="userinfo-avatar" src="{{ apiUserInfoMap.base.avatarUrl }}" background-size="cover"></image>
       <view class="name-box">
         <view class="userinfo-nickname">
-        {{ apiUserInfoMap.base.nick }}
-        <view wx:if="{{vipLevel > 0}}" style="border:1px solid #aaa;border-radius:3px;display:inline;font-size:15px;color:#aaa;padding:2px" bindtap="getVipDetail">
+          <text class="userinfo-nickname-str"> 
+            {{ apiUserInfoMap.base.nick }}
+          </text>
+          <view wx:if="{{vipLevel > 0}}" style="border:1px solid #aaa;border-radius:3px;display:inline;font-size:15px;color:#aaa;padding:2px" bindtap="getVipDetail">
           <image src="{{levelImageSrc}}" style="margin-top:3px;width:22px;height:18px;margin-bottom:-5px;">
           </image>
           {{vipName}}
-        </view>
+          </view>
         </view>
         <view class="userinfo-phone" wx:if="{{userMobile}}" >{{ userMobile }}</view>
         <view wx:if="{{!userMobile}}" >
@@ -24,8 +26,7 @@
 		<button class="weui-btn mini-btn" plain="true" size="mini" open-type="getUserInfo" bindgetuserinfo="onGotUserInfo">点击登录账户</button>
 	</view>
 
-  <!-- <view wx:if="{{ rechargeOpen }}" class="asset">-->
-<view wx:if="{{ apiUserInfoMap.base.isSeller }}" class="asset">
+<view class="asset">
     <view class='item' bindtap='goAsset'>
       <view>{{balance}}</view>
       <view>余额</view>

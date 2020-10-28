@@ -8,17 +8,27 @@
       <view class="weui-search-bar__form">
         <view class="weui-search-bar__box">
           <icon class="weui-icon-search_in-box" type="search" size="14"></icon>
-          <input type="text " class="weui-search-bar__input" placeholder="搜索" value="{{inputVal}}" focus="{{inputShowed}}" bindinput="inputTyping" confirm-type="search" bindconfirm='toSearch' />
+          <input type="text " class="weui-search-bar__input" placeholder="海南粉" value="{{inputVal}}" focus="{{inputShowed}}" bindinput="inputTyping" confirm-type="search" bindconfirm='toSearch' />
           <view class="weui-icon-clear" wx:if="{{inputVal.length > 0}}" bindtap="clearInput">
             <icon type="clear" size="14"></icon>
           </view>
         </view>
         <label class="weui-search-bar__label" hidden="{{inputShowed}}" bindtap="showInput">
           <icon class="weui-icon-search" type="search" size="14"></icon>
-          <view class="weui-search-bar__text">搜索</view>
+          <view class="weui-search-bar__text">海南粉</view>
         </label>
       </view>
       <view class="weui-search-bar__cancel-btn" hidden="{{!inputShowed}}" bindtap="hideInput">取消</view>
+    </view>
+    <view class="text-bk" wx:if="{{vipName && (vipRebate < 10)}}">
+      <view class="text-box">
+        <view class="text-l1">
+          您好{{nick}}，您已经是{{vipName}}！
+        </view>
+        <view class="text-l2">
+          享受全场{{vipRebate}}折，特价商品除外
+        </view>
+      </view>
     </view>
     <view class="swiper-container">
     <view class="swpier-background">
@@ -43,7 +53,43 @@
       </view>
     </scroll-view>
   </view>
+  <!-- 秒杀开始 -->
+  <block wx:if="{{miaoshaGoods && miaoshaGoods.length > 0}}">
 
+  <view class="weui-loadmore weui-loadmore_line">
+    <view class="weui-loadmore__tips weui-loadmore__tips_in-line">限时秒杀</view>
+  </view>  
+<view class="miaosha-container">
+      <view class="miaosha-goods-list" wx:for="{{miaoshaGoods}}" wx:key="id" bindtap="toDetailsTap" data-id="{{item.id}}">
+        <image src="{{item.pic}}" class="image" mode="aspectFill" lazy-load="true" />
+        <view class="r">
+          <view class="goods-title">{{item.name}}</view>
+          <!-- <view class="label"><van-icon size="30rpx" name="underway" /><text>限时秒杀</text></view> -->
+          <view class="count-down">
+            <van-count-down
+              wx:if="{{item.dateStartInt > 0}}"
+              time="{{ item.dateStartInt }}"
+              format="距离开始: HH 时 mm 分 ss 秒"
+            />
+            <van-count-down
+              wx:if="{{item.dateStartInt <= 0 && item.dateEndInt > 0}}"
+              time="{{ item.dateEndInt }}"
+              format="剩余: HH 时 mm 分 ss 秒"
+            />
+          </view>
+          <view class="miaosha-price-btn">
+            <view class="price">￥{{item.minPrice}} <text>￥{{item.originalPrice}}</text></view>
+            <button class="miaosh-goto-btn-disabled" wx:if="{{item.dateStartInt > 0}}" type="danger" size="small" round plain disabled>未开始</button>
+            <button class="miaosh-goto-btn-disabled" wx:if="{{item.dateEndInt <= 0}}" type="danger" size="small" round>已结束</button>
+            <button class="miaosh-goto-btn-disabled" wx:if="{{item.stores <= 0}}" type="danger" size="small" round>已抢完</button>
+            
+            <button wx:if="{{item.dateStartInt <= 0 && item.dateEndInt > 0 && item.stores > 0}}" class='miaosha-goto-btn'>立即抢购</button>
+          </view>
+        </view>
+      </view>
+    </view>
+  </block>
+  <!-- 秒杀结束 -->
   <view class="weui-loadmore weui-loadmore_line" wx:if="{{goodsRecommend.length > 0 && activeCategoryId == 0}}">
     <view class="weui-loadmore__tips weui-loadmore__tips_in-line">爆品推荐</view>
   </view>

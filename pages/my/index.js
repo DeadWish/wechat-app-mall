@@ -27,19 +27,22 @@ Page({
   onShow() {
     const _this = this
     let levelImageSrc;
-    switch (app.globalData.vipLevel) {
-      case 1:
+    switch (wx.getStorageSync('level')) {
+      case '钻石会员':
         levelImageSrc = "https://dcdn.it120.cc/2020/05/16/cec1f219-7074-4a2f-bb24-fa97202f22af.png";
         break;
-      case 2:
+      case '黄金会员':
         levelImageSrc = "https://dcdn.it120.cc/2020/05/16/03c8e56c-5f67-4248-b961-88726477b5f7.png";
         break;
-      case 3:
+      case '白银会员':
         levelImageSrc = "https://dcdn.it120.cc/2020/05/16/4ba93bd1-ec6f-437c-8e07-43d21aec4ed9.png";
         break;
-      case 4:
+      case '青铜会员':
         levelImageSrc = "https://dcdn.it120.cc/2020/05/16/f8da66ab-e165-4a25-a438-787e5e4e31ba.png";
-        break;  
+        break;
+      default:
+        app.globalData.vipLevel = 0
+        break;
     }
     this.setData({
       version: CONFIG.version,
